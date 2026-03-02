@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from typing import Any
 from uuid import UUID
 
+import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.orm import Session
 
@@ -308,10 +309,8 @@ def _create_release_match_event_if_needed(
         )
         .on_conflict_do_nothing(
             index_elements=["user_id", "type", "watch_release_id", "listing_id"],
-            index_where=(
-                (models.Event.type == models.EventType.NEW_MATCH)
-                & models.Event.watch_release_id.is_not(None)
-                & models.Event.listing_id.is_not(None)
+            index_where=sa.text(
+                "type = 'NEW_MATCH' AND watch_release_id IS NOT NULL AND listing_id IS NOT NULL"
             ),
         )
         .returning(models.Event.id)
