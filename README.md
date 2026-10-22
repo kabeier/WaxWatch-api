@@ -1,5 +1,7 @@
 # WaxWatch API
 
+> **This repository has moved.** Development continues in the [WaxWatchFS monorepo](https://github.com/kabeier/WaxWatchFS), under [`backend/`](https://github.com/kabeier/WaxWatchFS/tree/main/backend). Its full history is preserved there. This repo is archived (read-only).
+
 WaxWatch API powers a "record alert" backend: users define watch rules, the system searches supported marketplaces/providers, stores matching releases/listings, and delivers notifications when new matches are found.
 
 ## Purpose
